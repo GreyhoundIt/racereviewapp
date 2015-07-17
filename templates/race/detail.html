@@ -7,14 +7,24 @@
 
 	<div class="col-md-8">		
 		<div class="panel">
-			<h3>{{ race.title }}</h3>
+			<div class='row'>
+					 <div class="col-md-8">
+					 <h3><a href="{{ race.get_absolute_url }}">{{ race.title }}</a></h3>
+					 </div>
+					 <div class="col-md-4 text-right">
+					 <h3>{% include 'base/rating.html' with rating=race.get_average_rating %}</h3>
+					 </div>
+				</div>
 			{% if race.address %} <p><b>Location: </b>{{ race.address }}</p> {% endif %}
-			{% if race.date %} <p> {{race.date}} </p> {% endif %}
+			{% if race.date %} <p><b>Date: </b> {{race.date}} </p> {% endif %}
 			{% if race.image_file %}
 			<img class="img-responsive" src="{{ race.image_file.url}}"></img>
 			{% endif %}
-			<p>{{ race.description }}</p>
+			<p><b>Description: </b>{{ race.description }}</p>
 		</div>		
+		{% for review in race.get_reviews %}
+		{% include 'base/review.html' with race=race %}
+		{% endfor %}
 	</div>
 	<div class="col-md-2">
 	</div>

@@ -1,7 +1,18 @@
 from django.db import models
 from django.core.urlresolvers import reverse
+from django.contrib.auth.models import User
+from django.db.models import Avg
 import os
 import uuid
+
+RATING_CHOICES = (
+	(0, 'None'),
+	(1, '*'),
+	(2, '**'),
+	(3, '***'),
+	(4, '****'),
+	(5, '*****'),
+	)
 
 def upload_to_location(instance, filename):
     blocks = filename.split('.')
@@ -25,4 +36,23 @@ class Race(models.Model):
 
 	def get_absolute_url(self):
 		return reverse(viewname='race_list', args=[self.id])
-		
+
+	def get_average_rating(self):
+		average = self.review_set.all().aggregate(Avg('rating'))['rating__avg']
+		if average == None:
+			return average
+		else:
+			return int(average)
+
+
+	def get_reviews(self):
+		return self.review_set.all()
+
+class Review(models.Model):
+	race = models.ForeignKey(Race)
+	user = models.ForeignKey(User)
+	description = models.TextField(null=True, blank=True)
+	rating = models.IntegerField(choices=RATING_CHOICES, null=True, blank=True)
+	created_at = models.DateTimeField(auto_now_add=True)
+
+

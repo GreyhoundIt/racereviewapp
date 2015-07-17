@@ -68,6 +68,8 @@
                     </li> -->
                     {% endblock %}
                 </ul>
+                {% block search %}
+                {% endblock %}
             </div>
             <!-- /.navbar-collapse -->
         </div>
@@ -234,8 +236,7 @@
     <script src="{% static "js/cbpAnimatedHeader.js" %}"></script>
 
     <!-- Contact Form JavaScript -->
-    <script src="{% static "js/jqBootstrapValidation.js" %}"></script>
-    <script src="{% static "js/contact_me.js" %}"></script>
+  
 
     <!-- Custom Theme JavaScript -->    
     <script src="{% static "js/agency.js" %}"></script>
