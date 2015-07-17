@@ -1,0 +1,26 @@
+{% extends 'base/theme.html' %}
+
+{% block main_content %}
+<div class="row main-content">
+	<div class="col-md-2">
+	</div>
+
+	<div class="col-md-8">
+		{% for race in object_list %}
+			<div class="panel">
+				<h3><a href="{{ race.get_absolute_url }}" >{{ race.title }}</a></h3>
+				{% if race.address %} <p><b>Location: </b>{{ race.address }}</p> {% endif %}
+			{% if race.date %} <p> {{race.date}} </p> {% endif %}
+			{% if race.image_file %}
+			<img class="img-responsive" src="{{ race.image_file.url}}"></img>
+			{% endif %}
+				<p>{{ race.description }}</p>
+			</div>
+		{% endfor %}
+	</div>
+	<div class="col-md-2">
+	</div>
+
+</div>
+
+{% endblock %}

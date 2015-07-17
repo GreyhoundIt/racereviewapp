@@ -1,0 +1,24 @@
+{% extends 'base/theme.html' %}
+
+{% block main_content %}
+<div class="row main-content">
+	<div class="col-md-2">
+	</div>
+
+	<div class="col-md-8">		
+		<div class="panel">
+			<h3>{{ race.title }}</h3>
+			{% if race.address %} <p><b>Location: </b>{{ race.address }}</p> {% endif %}
+			{% if race.date %} <p> {{race.date}} </p> {% endif %}
+			{% if race.image_file %}
+			<img class="img-responsive" src="{{ race.image_file.url}}"></img>
+			{% endif %}
+			<p>{{ race.description }}</p>
+		</div>		
+	</div>
+	<div class="col-md-2">
+	</div>
+
+</div>
+
+{% endblock %}
