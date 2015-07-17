@@ -1,0 +1,18 @@
+<div class="row">
+<div class="col-md-4">
+
+<p><b>Price: </b>{% if race.price %}{{ race.price }}{% else %}----{% endif %}</p>
+<p><b>Distace: </b>{% if race.distance %}{{ race.get_distance_display }}{% else %}----{% endif %}</p>
+<p><b>Terrain: </b>{% if race.terrain %}{{ race.get_terrain_display }}{% else %}----{% endif %}</p>
+<p><b>Scenic: </b>{% if race.scenic %}{{ race.get_scenic_display }}{% else %}----{% endif %}</p>
+<p><b>Gradient: </b>{% if race.gradient %}{{ race.get_gradient_display }}{% else %}----{% endif %}</p>
+<p><b>PB course: </b>{% if race.pb %}{{ race.get_pb_display }}{% else %}----{% endif %}</p>
+</div>
+<div class="col-md-4">
+<p><b>Toilets: </b>{% if race.toilets %}{{ race.get_toilets_display }}{% else %}----{% endif %}</p>
+<p><b>Changing Rooms: </b>{% if race.changing %}{{ race.get_changing_display }}{% else %}----{% endif %}</p>
+<p><b>Water Stations: </b>{% if race.water %}{{ race.get_water_display }}{% else %}----{% endif %}</p>
+<p><b>Medal: </b>{% if race.medal %}{{ race.get_medal_display }}{% else %}----{% endif %}</p>
+<p><b>T-shirt: </b>{% if race.tshirt %}{{ race.get_tshirt_display }}{% else %}----{% endif %}</p>
+</div>
+</div>

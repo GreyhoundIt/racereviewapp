@@ -17,11 +17,21 @@
 				</div>
 			{% if race.address %} <p><b>Location: </b>{{ race.address }}</p> {% endif %}
 			{% if race.date %} <p><b>Date: </b> {{race.date}} </p> {% endif %}
+			{% include 'race/specifics.html' with race=race %}
 			{% if race.image_file %}
 			<img class="img-responsive" src="{{ race.image_file.url}}"></img>
 			{% endif %}
 			<p><b>Description: </b>{{ race.description }}</p>
+
 		</div>		
+		<div class="col-md-12">
+ 			<a type="button" href="{% url 'race_update' pk=race.id %}" class="btn btn-default pull-right">Edit</a>
+ 			{% if user_review %}
+ 			<a type="button" href="{% url 'review_update' pk=race.id %}" class="btn btn-default pull-right">Update Review</a>
+ 			{% else %}
+ 			<a type="button" href="{% url 'review_create' pk=race.id %}" class="btn btn-default pull-right">Create Review</a>
+ 			{% endif %}
+		 </div>
 		{% for review in race.get_reviews %}
 		{% include 'base/review.html' with race=race %}
 		{% endfor %}
