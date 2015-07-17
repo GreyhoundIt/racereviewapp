@@ -78,7 +78,7 @@ WSGI_APPLICATION = 'racereviewapp.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/1.8/ref/settings/#databases
 
-if ON_HEROKU == True:
+if ON_HEROKU == 1:
     # Parse database configuration from $DATABASE_URL
     import dj_database_url
     DATABASES['default'] = dj_database_url.config()
@@ -132,4 +132,4 @@ AWS_QUERYSTRING_AUTH = False
 AWS_SECRET_ACCESS_KEY = os.environ.get('AWSSecretKey')
 AWS_ACCESS_KEY_ID = os.environ.get('AWSAccessKeyId')
 
-AWS_STORAGE_BUCKET_NAME = 'racereviewapp'
+AWS_STORAGE_BUCKET_NAME = 'racereviewapp '
