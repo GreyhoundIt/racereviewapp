@@ -3,6 +3,7 @@ from django.views.generic import TemplateView
 from django.views.generic.list import ListView
 from django.views.generic.detail import DetailView
 from django.views.generic.edit import CreateView, UpdateView
+from sitegate.decorators import redirect_signedin, sitegate_view
 import core.models as coremodels
 # Create your views here.
 
@@ -12,6 +13,7 @@ class LandingView(TemplateView):
 class RaceListView(ListView):
 	model = coremodels.Race
 	template_name = 'race/list.html'
+	paginate_by = 5
 
 class SearchRaceListView(RaceListView):
 
@@ -19,10 +21,12 @@ class SearchRaceListView(RaceListView):
 		incoming_data = self.request.GET.get('query', '')
 		return coremodels.Race.objects.filter(title__icontains=incoming_data)
 
+
 class RaceDetailView(DetailView):
 	model = coremodels.Race
 	template_name = 'race/detail.html'
 	context_object_name = 'race'
+	
 
 	def get_context_data(self, **kwargs):
 		context = super(RaceDetailView, self).get_context_data(**kwargs)
@@ -49,7 +53,7 @@ class RaceUpdateView(UpdateView):
 class ReviewCreateView(CreateView):
 	model = coremodels.Review
 	template_name = 'base/form.html'
-	fields = ['review', 'rating']
+	fields = ['review', 'valueformoney', 'atmosphere', 'goodybag' ,'rating']
 
 	def form_valid(self, form):
 		form.instance.user = self.request.user
@@ -62,7 +66,7 @@ class ReviewCreateView(CreateView):
 class ReviewUpdateView(UpdateView):
 	model = coremodels.Review
 	template_name = 'base/form.html'
-	fields = ['review', 'rating']
+	fields = ['review', 'valueformoney', 'atmosphere', 'goodybag' ,'rating']
 
 	def get_object(self):
 		return coremodels.Review.objects.get(race__id=self.kwargs['pk'], user=self.request.user)
@@ -70,3 +74,8 @@ class ReviewUpdateView(UpdateView):
 	def get_success_url(self):
 		return self.object.race.get_absolute_url()
 
+@sitegate_view(widget_attrs={'class': 'form-control', 'placeholder': lambda f: f.label}, template='form_bootstrap3') # This also prevents logged in users from accessing our sign in/sign up page.
+def entrance(request):
+    return render(request, 'base/entrance.html', {'title': 'Sign in & Sign up'})
+
+    

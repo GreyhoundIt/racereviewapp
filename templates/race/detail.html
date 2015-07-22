@@ -1,6 +1,10 @@
 {% extends 'base/theme.html' %}
-
 {% block main_content %}
+<div class="data-layer">
+    <ul>
+        <li class="location-data" data-latitude="{{ race.position.latitude }}" data-longitude="{{ race.position.longitude }}">{{ race.title }}</li>
+    </ul>
+</div>
 <div class="row main-content">
 	<div class="col-md-2">
 	</div>
@@ -14,9 +18,15 @@
 					 <div class="col-md-4 text-right">
 					 <h3>{% include 'base/rating.html' with rating=race.get_average_rating %}</h3>
 					 </div>
-				</div>
+			</div>
+			<div class='row'>
+				 <div class="col-md-4">
 			{% if race.address %} <p><b>Location: </b>{{ race.address }}</p> {% endif %}
-			{% if race.date %} <p><b>Date: </b> {{race.date}} </p> {% endif %}
+				</div>
+				<div class="col-md-4">
+			{% if race.date %}<p> <b>Date: </b> {{race.date}} </p> {% endif %}
+				</div>
+			</div>
 			{% include 'race/specifics.html' with race=race %}
 			{% if race.image_file %}
 			<img class="img-responsive" src="{{ race.image_file.url}}"></img>

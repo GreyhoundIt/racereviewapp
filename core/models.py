@@ -2,6 +2,7 @@ from django.db import models
 from django.core.urlresolvers import reverse
 from django.contrib.auth.models import User
 from django.db.models import Avg
+from geoposition.fields import GeopositionField
 import os
 import uuid
 
@@ -15,43 +16,43 @@ RATING_CHOICES = (
 	)
 
 YESNO_CHOICES =(
-	(0, 'No'),
-	(1, 'Yes'),
+	('No', 'No'),
+	('Yes', 'Yes'),
 	)
 
 TERRAIN_CHOICES =(
-	(0, 'Road'),
-	(1, 'Trail'),
-	(2, 'Fell'),
-	(3, 'XC'),
-	(4, 'Multiterrain'),
+	('Road', 'Road'),
+	('Trail', 'Trail'),
+	('Fell', 'Fell'),
+	('XC', 'XC'),
+	('Multiterrain', 'Multiterrain'),
 	)
 
 DISTANCE_CHOICES = (
-	(0, '1 Mile'),
-	(1, '5K'),
-	(2, '10K'),
-	(3, '10 Miles'),
-	(4, 'Half Marathon'),
-	(5, 'Marathon'),
-	(6, 'Other'),
+	('1 Mile', '1 Mile'),
+	('5K', '5K'),
+	('10K', '10K'),
+	('10 Miles', '10 Miles'),
+	('Half Marathon', 'Half Marathon'),
+	('Marathon', 'Marathon'),
+	('Other', 'Other'),
 	)
 TSHIRT_CHOICES=(
-	(0, 'No'),
-	(1, 'Cotton'),
-	(2, 'Technical'),
+	('No', 'No'),
+	('Cotton', 'Cotton'),
+	('Technical', 'Technical'),
 	)
 PB_CHOICES=(
-	(0, 'Yes'),
-	(1, 'Likely'),
-	(2, 'Unlikely'),
-	(3, 'No'),
+	('Yes', 'Yes'),
+	('Likely', 'Likely'),
+	('Unlikely', 'Unlikely'),
+	('No', 'No'),
 	)
 GRADIENT_CHOICES=(
-	(0, 'Flat'),
-	(1, 'Slight Hills'),
-	(2, 'Undulating'),
-	(3, 'Hilly'),
+	('Flat', 'Flat'),
+	('Slight Hills', 'Slight Hills'),
+	('Undulating', 'Undulating'),
+	('Hilly', 'Hilly'),
 	)
 
 def upload_to_location(instance, filename):
@@ -67,18 +68,19 @@ class Race(models.Model):
 	title = models.CharField(max_length=300)
 	description = models.TextField(null=True, blank=True)
 	address = models.TextField(null=True, blank=True)
+	position = GeopositionField(null=True, blank=True)
 	date = models.CharField(max_length=300, null=True, blank=True) 
 	price = models.CharField(max_length=300, null=True, blank=True)
-	distance = models.IntegerField(choices=DISTANCE_CHOICES, null=True, blank=True)
-	terrain = models.IntegerField(choices=TERRAIN_CHOICES, null=True, blank=True)
-	gradient = models.IntegerField(choices=GRADIENT_CHOICES, null=True, blank=True)
-	medal = models.IntegerField(choices=YESNO_CHOICES, null=True, blank=True)
-	tshirt = models.IntegerField(choices=TSHIRT_CHOICES, null=True, blank=True)
-	changing = models.IntegerField(choices=YESNO_CHOICES, null=True, blank=True)
-	toilets = models.IntegerField(choices=YESNO_CHOICES, null=True, blank=True)
-	water = models.IntegerField(choices=YESNO_CHOICES, null=True, blank=True)
-	pb = models.IntegerField(choices=PB_CHOICES, null=True, blank=True)
-	scenic = models.IntegerField(choices=YESNO_CHOICES, null=True ,blank=True)
+	distance = models.CharField(choices=DISTANCE_CHOICES,max_length=300, null=True, blank=True)
+	terrain = models.CharField(choices=TERRAIN_CHOICES, max_length=300,null=True, blank=True)
+	gradient = models.CharField(choices=GRADIENT_CHOICES,max_length=300, null=True, blank=True)
+	medal = models.CharField(choices=YESNO_CHOICES,max_length=300, null=True, blank=True)
+	tshirt = models.CharField(choices=TSHIRT_CHOICES, max_length=300, null=True, blank=True)
+	changing = models.CharField(choices=YESNO_CHOICES,max_length=300, null=True, blank=True)
+	toilets = models.CharField(choices=YESNO_CHOICES,max_length=300, null=True, blank=True)
+	water = models.CharField(choices=YESNO_CHOICES,max_length=300, null=True, blank=True)
+	pb = models.CharField(choices=PB_CHOICES,max_length=300, null=True, blank=True)
+	scenic = models.CharField(choices=YESNO_CHOICES,max_length=300, null=True ,blank=True)
 	image_file = models.ImageField(null=True, blank=True)
 	created_at = models.DateTimeField(auto_now_add=True)
 	
@@ -103,7 +105,10 @@ class Review(models.Model):
 	race = models.ForeignKey(Race)
 	user = models.ForeignKey(User)
 	review = models.TextField(null=True, blank=True)
-	rating = models.IntegerField(choices=RATING_CHOICES, null=True, blank=True)
+	rating = models.IntegerField(choices=RATING_CHOICES, null=True, blank=True, verbose_name='Overall Raiting')
+	valueformoney = models.IntegerField(choices=RATING_CHOICES, null=True, blank=True, verbose_name='Value for money')
+	goodybag = models.IntegerField(choices=RATING_CHOICES, null=True, blank=True, verbose_name='Goody Bag')
+	atmosphere = models.IntegerField(choices=RATING_CHOICES, null=True, blank=True)
 	created_at = models.DateTimeField(auto_now_add=True)
 
 

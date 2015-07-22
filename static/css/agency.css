@@ -8,7 +8,9 @@ body {
     overflow-x: hidden;
     font-family: "Roboto Slab","Helvetica Neue",Helvetica,Arial,sans-serif;
 }
-
+.wide-map { 
+    height:400px;
+}
 .text-muted {
     color: #777;
 }
@@ -984,7 +986,7 @@ header {
     text-align: left;
     color: #fff;
     background-attachment: scroll;
-    background-image: url(../img/run.jpg);
+    background-image: url(../img/Python_Header_Image.jpg);
     background-position: center center;
     background-repeat: none;
     -webkit-background-size: cover;

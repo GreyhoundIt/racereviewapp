@@ -1,13 +1,21 @@
 {% extends "base/index.html" %}
 
+
 {% block navigation %}
-<li>
-	<a class="page-scroll" href="/race">Find A Race</a>
-</li>	
-<li>
+ <li>
+ <a class="page-scroll" href="/race">Find a Race</a>
+ </li>
+ {% if user.is_authenticated %}
+ <li>
  <a class="page-scroll" href="/race/create/">Add a Race</a>
  </li> 
+ {% else %}
+ <li>
+ <a class="page-scroll" href="/entrance/">Log In</a>
+ </li> 
+ {% endif %} 
 {% endblock %}
+
 
 {% block search %}
 <form action="/search/" class="navbar-form navbar-right" method="get">

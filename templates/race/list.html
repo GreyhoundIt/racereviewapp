@@ -1,15 +1,25 @@
 {% extends 'base/theme.html' %}
-
+{% load bootstrap_pagination %}
 {% block main_content %}
+<div class="data-layer">
+ <ul>
+ {% for race in object_list %}
+ <li class="location-data" data-latitude="{{ race.position.latitude }}" data-longitude="{{ race.position.longitude }}" data-id="{{ race.id }}">{{ race.title }}</li>
+ {% endfor %}
+ </ul>
+</div>
+<div class="header-buffer">
+</div>
+<div class="wide-map" id="map"></div>
 <div class="row main-content">
+
 	<div class="col-md-2">
 	</div>
 
 	<div class="col-md-8">
 		{% for race in object_list %}
 			<div class="panel">
-
-				<div class='row'>
+							<div class='row'>
 					 <div class="col-md-8">
 					 <h3><a href="{{ race.get_absolute_url }}">{{ race.title }}</a></h3>
 					 </div>
@@ -33,4 +43,7 @@
 
 </div>
 
+{% endblock %}
+{% block pagination %}
+ {% bootstrap_paginate page_obj range=10 show_prev_next="false" show_first_last="true" %}
 {% endblock %}
