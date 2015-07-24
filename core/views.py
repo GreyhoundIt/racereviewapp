@@ -80,7 +80,7 @@ class ReviewUpdateView(UpdateView):
 
 @signup_view(widget_attrs={'class': 'form-control', 'placeholder': lambda f: f.label}, template='form_bootstrap3', flow=ClassicWithEmailSignup)
 @signin_view(widget_attrs={'class': 'form-control', 'placeholder': lambda f: f.label}, template='form_bootstrap3', flow=ClassicSignin)
-@redirect_signedin('/race')
+@redirect_signedin('race')
 def entrance(request):
     return render(request, 'base/entrance.html', {'title': 'Sign in & Sign up'})
 

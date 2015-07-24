@@ -4,7 +4,8 @@ from django.contrib.auth.decorators import login_required
 import core.views as coreviews
 
 urlpatterns = patterns('',	
-	url(r'^$', coreviews.LandingView.as_view()),
+	url(r'^$', coreviews.RaceListView.as_view()),
+	url(r'^about/$', coreviews.LandingView.as_view()),
 	url(r'race/$', coreviews.RaceListView.as_view()),
 	url(r'race/(?P<pk>\d+)/detail/$', coreviews.RaceDetailView.as_view(), name='race_list'),
 	url(r'race/create/$', login_required(coreviews.RaceCreateView.as_view())),
