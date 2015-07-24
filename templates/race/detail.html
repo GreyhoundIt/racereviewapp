@@ -36,11 +36,13 @@
 		</div>		
 		<div class="col-md-12">
  			<a type="button" href="{% url 'race_update' pk=race.id %}" class="btn btn-default pull-right">Edit</a>
- 			{% if user_review %}
- 			<a type="button" href="{% url 'review_update' pk=race.id %}" class="btn btn-default pull-right">Update Review</a>
- 			{% else %}
- 			<a type="button" href="{% url 'review_create' pk=race.id %}" class="btn btn-default pull-right">Create Review</a>
- 			{% endif %}
+ 			{% if user.is_authenticated %}
+	 			{% if user_review %}
+	 			<a type="button" href="{% url 'review_update' pk=race.id %}" class="btn btn-default pull-right">Update Review</a>
+	 			{% else %}
+	 			<a type="button" href="{% url 'review_create' pk=race.id %}" class="btn btn-default pull-right">Create Review</a>
+	 			{% endif %}
+	 		{% endif %}
 		 </div>
 		{% for review in race.get_reviews %}
 		{% include 'base/review.html' with race=race %}
