@@ -35,8 +35,9 @@
 
 		</div>		
 		<div class="col-md-12">
- 			<a type="button" href="{% url 'race_update' pk=race.id %}" class="btn btn-default pull-right">Edit</a>
+ 			
  			{% if user.is_authenticated %}
+ 			<a type="button" href="{% url 'race_update' pk=race.id %}" class="btn btn-default pull-right">Edit</a>
 	 			{% if user_review %}
 	 			<a type="button" href="{% url 'review_update' pk=race.id %}" class="btn btn-default pull-right">Update Review</a>
 	 			{% else %}
