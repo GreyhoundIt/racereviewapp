@@ -9,7 +9,7 @@
 				 <div class="my_signin_block">
 				 <h2 class="section-heading"><a href="{{ race.get_absolute_url }}">Sign In</a></h2>
 				 <h3 class="section-subheading text-muted">Welcome back!</h3>
-				 {% sitegate_signin_form %}
+				 {% sitegate_signin_form for ClassicSignin %}
 				 </div>
 			 </div>
 		 
@@ -17,7 +17,7 @@
 			 <div class="my_signup_block">
 			 <h2 class="section-heading"><a href="{{ race.get_absolute_url }}">Join Race Review</a></h2>
 			 <h3 class="section-subheading text-muted">Sign up</h3>
-			 {% sitegate_signup_form %}
+			 {% sitegate_signup_form for ClassicWithEmailSignup %}
 			 </div>
 		 </div>
 		 </div>
