@@ -1033,3 +1033,14 @@ h3 a {
 .btn{
     border-radius: 0px;
 }
+
+ /*
+ * Playing with the map settings
+ */
+.geoposition-widget table {
+    display: none;
+}
+
+.geoposition-serch{
+    float: left;
+}
