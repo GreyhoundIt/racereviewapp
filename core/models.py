@@ -69,7 +69,7 @@ class Race(models.Model):
 	website = models.CharField(max_length=300, null=True, blank=True)
 	description = models.TextField(null=True, blank=True)
 	address = models.TextField(null=True, blank=True)
-	position = GeopositionField(null=True, blank=True)
+	position = GeopositionField(null=True, blank=True, verbose_name='Starting Address')
 	date = models.CharField(max_length=300, null=True, blank=True) 
 	price = models.CharField(max_length=300, null=True, blank=True)
 	distance = models.CharField(choices=DISTANCE_CHOICES,max_length=300, null=True, blank=True)

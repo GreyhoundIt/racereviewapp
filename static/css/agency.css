@@ -1042,5 +1042,5 @@ h3 a {
 }
 
 .geoposition-search {
-    float: left;
+    float: left !important;
 }
