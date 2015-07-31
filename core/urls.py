@@ -1,7 +1,7 @@
 
 from django.conf.urls import include, url, patterns
 from django.contrib.auth.decorators import login_required
-from djange.contrib.auth.views import logout
+
 import core.views as coreviews
 
 urlpatterns = patterns('',	
