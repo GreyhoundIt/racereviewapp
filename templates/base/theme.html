@@ -6,14 +6,17 @@
  <a class="page-scroll" href="/race">Find a Race</a>
  </li>
  {% if user.is_authenticated %}
- <li>
- <a class="page-scroll" href="/race/create/">Add a Race</a>
- </li> 
- {% else %}
- <li>
- <a class="page-scroll" href="/entrance/">Log In</a>
- </li> 
- {% endif %} 
+	 <li>
+	 <a class="page-scroll" href="/race/create/">Add a Race</a>
+	 </li> 
+	 <li>
+	 <a class="page-scroll" href="/race/logout/">Log Out</a>
+	 </li> 
+	 {% else %}
+	 <li>
+	 <a class="page-scroll" href="/entrance/">Log In</a>
+	 </li> 
+{% endif %} 
  <li>
  <a class="page-scroll" href="/about">About</a>
  </li> 
