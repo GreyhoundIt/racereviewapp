@@ -66,6 +66,7 @@ def upload_to_location(instance, filename):
 # Create your models here.
 class Race(models.Model):
 	title = models.CharField(max_length=300)
+	website = models.CharField(max_length=300, null=True, blank=True)
 	description = models.TextField(null=True, blank=True)
 	address = models.TextField(null=True, blank=True)
 	position = GeopositionField(null=True, blank=True)
