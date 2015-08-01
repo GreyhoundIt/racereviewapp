@@ -70,7 +70,7 @@ class Race(models.Model):
 	description = models.TextField(null=True, blank=True)
 	address = models.TextField(null=True, blank=True)
 	position = GeopositionField(null=True, blank=True, verbose_name='Starting Address')
-	date = models.CharField(max_length=300, null=True, blank=True) 
+	date = models.DateField() 
 	price = models.CharField(max_length=300, null=True, blank=True)
 	distance = models.CharField(choices=DISTANCE_CHOICES,max_length=300, null=True, blank=True)
 	terrain = models.CharField(choices=TERRAIN_CHOICES, max_length=300,null=True, blank=True)
