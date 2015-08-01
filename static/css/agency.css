@@ -1044,7 +1044,26 @@ h3 a {
 .geoposition-search {
     float: left !important;
 }
+.dropdown-menu .sub-menu {
+    left: 100%;
+    position: absolute;
+    top: 0;
+    visibility: hidden;
+    margin-top: -1px;
+}
 
-ul.nav li.dropdown:hover ul.dropdown-menu{
-    display: block;    
+.dropdown-menu li:hover .sub-menu {
+    visibility: visible;
+}
+
+.dropdown:hover .dropdown-menu {
+    display: block;
+}
+
+.dropdownbg {
+    background-color: black;
+}
+
+.dropdownbg:hover{
+    background-color: black !important;
 }
