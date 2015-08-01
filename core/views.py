@@ -23,6 +23,12 @@ class SearchRaceListView(RaceListView):
 		incoming_data = self.request.GET.get('query', '')
 		return coremodels.Race.objects.filter(title__icontains=incoming_data)
 
+class SearchRaceDistanceListView(RaceListView):
+
+	def get_queryset(self):
+		incoming_data = self.request.GET.get('query', '')
+		return coremodels.Race.objects.filter(distance__icontains=incoming_data)
+
 
 class RaceDetailView(DetailView):
 	model = coremodels.Race

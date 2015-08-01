@@ -1044,3 +1044,7 @@ h3 a {
 .geoposition-search {
     float: left !important;
 }
+
+ul.nav li.dropdown:hover ul.dropdown-menu{
+    display: block;    
+}
